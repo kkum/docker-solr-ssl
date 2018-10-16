@@ -3,6 +3,7 @@ services:
 
   sql2017:
     image: microsoft/mssql-server-linux:2017-latest
+    restart: always
     ports:
       - "1433:1433"
     volumes:
