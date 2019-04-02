@@ -1,13 +1,14 @@
 version: "3.3"
 services:
 
-  sql2017:
+  mssql-2017:
     image: microsoft/mssql-server-linux:2017-latest
     restart: always
     ports:
       - "1433:1433"
     volumes:
       - ./Sqldata:/var/opt/mssql
+      - ./usecontaineddbauth.sql:/var/opt/usecontaineddbauth.sql
     environment:
       ACCEPT_EULA: "Y"
       SA_PASSWORD: Qwerty123
@@ -24,7 +25,7 @@ services:
       - SOLR_SSL_TRUST_STORE_PASSWORD=123SecureSolr!
     volumes:
       - ./certs:/opt/solr/server/certs
-      - ./solr_home:/opt/solr/server/solr
+      - ./solr_home/solr/server/solr:/opt/solr/server/solr
     logging:
       driver: "json-file"
       options:
